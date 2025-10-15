@@ -9,11 +9,17 @@ from pathlib import Path
 import hashlib
 
 app = Flask(__name__)
-# Permitir ambas URLs de Firebase
-CORS(app, origins=[
-    "https://pulmocheck-96f8f.web.app",
-    "https://pulmocheck-96f8f.firebaseapp.com"
-], supports_credentials=True)
+
+# Configurar CORS para Firebase
+CORS(app, 
+     origins=[
+         "https://pulmocheck-96f8f.web.app",
+         "https://pulmocheck-96f8f.firebaseapp.com"
+     ],
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+     allow_headers=["Content-Type", "Authorization"],
+     supports_credentials=True,
+     max_age=3600)
 
 # Configuración
 UPLOAD_FOLDER = 'uploads'
