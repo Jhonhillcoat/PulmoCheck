@@ -33,12 +33,20 @@ app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max
 Path(UPLOAD_FOLDER).mkdir(exist_ok=True)
 
 def get_db_connection():
+    # Asegurar que la base de datos exista
+    db_exists = os.path.exists(DB_PATH)
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
+    
+    # Si es primera vez, inicializar
+    if not db_exists:
+        print("Base de datos no existe, inicializando...")
+        init_db_tables(conn)
+    
     return conn
 
-def init_db():
-    conn = get_db_connection()
+def init_db_tables(conn):
+    """Crear tablas si no existen"""
     cursor = conn.cursor()
     
     # Tabla de pacientes y evaluaciones
@@ -79,7 +87,7 @@ def init_db():
         )
     ''')
     
-    # Tabla de usuarios médicos (simple)
+    # Tabla de usuarios médicos
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS doctors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -92,13 +100,19 @@ def init_db():
     # Crear doctor de demo si no existe
     cursor.execute('SELECT * FROM doctors WHERE username = ?', ('doctor',))
     if not cursor.fetchone():
-        # Password: doctor123
         password_hash = hashlib.sha256('doctor123'.encode()).hexdigest()
         cursor.execute('INSERT INTO doctors (username, password_hash, name) VALUES (?, ?, ?)',
                       ('doctor', password_hash, 'Dr. Demo'))
     
     conn.commit()
+    print("Tablas creadas exitosamente")
+
+def init_db():
+    """Inicializar base de datos - ahora se hace automáticamente en get_db_connection()"""
+    print("Inicializando base de datos...")
+    conn = get_db_connection()
     conn.close()
+    print("Base de datos lista")
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
