@@ -207,6 +207,9 @@ def create_assessment():
     try:
         data = request.json
         
+        # Log de debug
+        print(f"Recibiendo assessment: {data}")
+        
         # Validar datos requeridos
         required_fields = ['patient_name', 'age', 'gender', 'years_smoking', 
                           'cigarettes_per_day', 'family_history', 'persistent_cough',
@@ -214,55 +217,66 @@ def create_assessment():
         
         for field in required_fields:
             if field not in data:
+                print(f"Campo faltante: {field}")
                 return jsonify({'error': f'Campo requerido: {field}'}), 400
         
         # Calcular score de riesgo
         risk_data = calculate_risk_score(data)
+        print(f"Score calculado: {risk_data['score']}")
         
         # Guardar en base de datos
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        
-        cursor.execute('''
-            INSERT INTO assessments (
-                patient_name, patient_email, age, gender, years_smoking,
-                cigarettes_per_day, family_history, persistent_cough, dyspnea,
-                hemoptysis, last_ct, asbestos_exposure, copd_emphysema,
-                risk_score, risk_level, recommendation
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ''', (
-            data['patient_name'],
-            data.get('patient_email', ''),
-            data['age'],
-            data['gender'],
-            data['years_smoking'],
-            data['cigarettes_per_day'],
-            data['family_history'],
-            data['persistent_cough'],
-            data['dyspnea'],
-            data['hemoptysis'],
-            data.get('last_ct', ''),
-            data['asbestos_exposure'],
-            data['copd_emphysema'],
-            risk_data['score'],
-            risk_data['risk_level'],
-            risk_data['recommendation']
-        ))
-        
-        assessment_id = cursor.lastrowid
-        conn.commit()
-        conn.close()
-        
-        return jsonify({
-            'success': True,
-            'assessment_id': assessment_id,
-            'risk_score': risk_data['score'],
-            'risk_level': risk_data['risk_level'],
-            'recommendation': risk_data['recommendation'],
-            'factors': risk_data['factors']
-        })
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute('''
+                INSERT INTO assessments (
+                    patient_name, patient_email, age, gender, years_smoking,
+                    cigarettes_per_day, family_history, persistent_cough, dyspnea,
+                    hemoptysis, last_ct, asbestos_exposure, copd_emphysema,
+                    risk_score, risk_level, recommendation
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                data['patient_name'],
+                data.get('patient_email', ''),
+                data['age'],
+                data['gender'],
+                data['years_smoking'],
+                data['cigarettes_per_day'],
+                data['family_history'],
+                data['persistent_cough'],
+                data['dyspnea'],
+                data['hemoptysis'],
+                data.get('last_ct', ''),
+                data['asbestos_exposure'],
+                data['copd_emphysema'],
+                risk_data['score'],
+                risk_data['risk_level'],
+                risk_data['recommendation']
+            ))
+            
+            assessment_id = cursor.lastrowid
+            conn.commit()
+            conn.close()
+            
+            print(f"Assessment {assessment_id} creado exitosamente")
+            
+            return jsonify({
+                'success': True,
+                'assessment_id': assessment_id,
+                'risk_score': risk_data['score'],
+                'risk_level': risk_data['risk_level'],
+                'recommendation': risk_data['recommendation'],
+                'factors': risk_data['factors']
+            })
+        except sqlite3.Error as db_error:
+            print(f"Error de base de datos: {db_error}")
+            return jsonify({'error': f'Error de base de datos: {str(db_error)}'}), 500
         
     except Exception as e:
+        print(f"Error general: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/upload/<int:assessment_id>', methods=['POST'])
