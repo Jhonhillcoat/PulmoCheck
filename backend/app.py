@@ -9,7 +9,7 @@ from pathlib import Path
 import hashlib
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://pulmocheck-96f8f.web.app", "https://pulmocheck-96f8f.firebaseapp.com"])
 
 # Configuración
 UPLOAD_FOLDER = 'uploads'
