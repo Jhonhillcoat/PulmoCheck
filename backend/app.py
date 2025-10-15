@@ -9,7 +9,11 @@ from pathlib import Path
 import hashlib
 
 app = Flask(__name__)
-CORS(app, origins=["https://pulmocheck-96f8f.web.app", "https://pulmocheck-96f8f.firebaseapp.com"])
+# Permitir ambas URLs de Firebase
+CORS(app, origins=[
+    "https://pulmocheck-96f8f.web.app",
+    "https://pulmocheck-96f8f.firebaseapp.com"
+], supports_credentials=True)
 
 # Configuración
 UPLOAD_FOLDER = 'uploads'
