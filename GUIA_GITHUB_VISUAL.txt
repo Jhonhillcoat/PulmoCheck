@@ -1,0 +1,187 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║          📦 CREAR REPOSITORIO EN GITHUB (CON IMÁGENES)           ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 1: ABRIR GITHUB
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Abre tu navegador (Chrome, Edge, Firefox)
+
+2. Ve a esta URL:
+   
+   https://github.com/new
+   
+   (Si no tienes cuenta, primero crea una en https://github.com)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 2: COMPLETAR FORMULARIO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Verás un formulario. Complétalo así:
+
+┌─────────────────────────────────────────────────────┐
+│  Repository name *                                  │
+│  ┌───────────────────────────────────────────────┐ │
+│  │ pulmocheck                                    │ │
+│  └───────────────────────────────────────────────┘ │
+│                                                     │
+│  Description (optional)                             │
+│  ┌───────────────────────────────────────────────┐ │
+│  │ Plataforma de detección temprana de cáncer   │ │
+│  │ de pulmón                                     │ │
+│  └───────────────────────────────────────────────┘ │
+│                                                     │
+│  ● Public                                           │
+│  ○ Private                                          │
+│                                                     │
+│  Initialize this repository with:                  │
+│  ☐ Add a README file       ← NO marcar             │
+│  ☐ Add .gitignore          ← NO marcar             │
+│  ☐ Choose a license        ← NO marcar             │
+│                                                     │
+│  [ Create repository ] ← Clic aquí                 │
+└─────────────────────────────────────────────────────┘
+
+IMPORTANTE:
+• Usa "Public" (necesario para servicios gratis)
+• NO marques ninguna de las casillas de abajo
+• Solo "Create repository"
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 3: COPIAR LA URL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Después de crear, verás una página con instrucciones.
+
+Busca la URL en la parte superior, se ve así:
+
+┌─────────────────────────────────────────────────────┐
+│  Quick setup — if you've done this kind of thing   │
+│  before                                             │
+│                                                     │
+│  HTTPS  SSH                                         │
+│  ┌────────────────────────────────────────────┐   │
+│  │ https://github.com/TU-USUARIO/pulmocheck.git│  │
+│  └────────────────────────────────────────────┘   │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+
+COPIA ESA URL! La necesitarás después.
+
+Tu URL será algo como:
+https://github.com/juanhillcoat/pulmocheck.git
+                    ^^^^^^^^^^^
+                    Este es tu usuario
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 4: CONECTAR DESDE TU PC (OPCIÓN A - FÁCIL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+En tu carpeta C:\PulmoCheck:
+
+1. Haz DOBLE CLIC en: CONECTAR_GITHUB.bat
+
+2. Te preguntará tu usuario de GitHub
+
+3. Ingresa tu usuario (solo el nombre, sin @)
+   Ejemplo: juanhillcoat
+
+4. Presiona Enter
+
+5. Te pedirá usuario y contraseña de GitHub:
+   - Usuario: tu email o usuario de GitHub
+   - Password: tu contraseña de GitHub
+   
+   NOTA: Si tienes 2FA (autenticación de dos factores):
+   - Necesitarás un Personal Access Token
+   - Ver: https://github.com/settings/tokens
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 4: CONECTAR DESDE TU PC (OPCIÓN B - MANUAL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Abre PowerShell en C:\PulmoCheck y ejecuta:
+
+# Reemplaza TU-USUARIO con tu usuario real
+git remote add origin https://github.com/TU-USUARIO/pulmocheck.git
+
+# Renombrar branch
+git branch -M main
+
+# Subir código
+git push -u origin main
+
+Ejemplo si tu usuario es "juanhillcoat":
+git remote add origin https://github.com/juanhillcoat/pulmocheck.git
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ VERIFICAR QUE FUNCIONÓ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Después de hacer push, ve a tu repositorio:
+https://github.com/TU-USUARIO/pulmocheck
+
+Deberías ver todos tus archivos:
+• backend/
+• frontend/
+• README.md
+• firebase.json
+• etc.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ PROBLEMAS COMUNES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problema: "Authentication failed"
+Solución: 
+  • Verifica usuario y contraseña
+  • Si tienes 2FA, usa Personal Access Token:
+    1. Ve a: https://github.com/settings/tokens
+    2. Generate new token (classic)
+    3. Selecciona: repo
+    4. Genera y copia el token
+    5. Usa el token como contraseña
+
+Problema: "Repository already exists"
+Solución:
+  • Ya creaste el repo, solo haz push:
+    git push -u origin main
+
+Problema: "Remote origin already exists"
+Solución:
+  • Elimina el remote anterior:
+    git remote remove origin
+  • Luego agrega el nuevo:
+    git remote add origin https://github.com/TU-USUARIO/pulmocheck.git
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📱 SIGUIENTE PASO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Una vez que tu código esté en GitHub:
+
+1. Abre: https://render.com
+2. Sigue PASOS_GITHUB_RENDER.txt (Paso 3)
+3. Despliega tu backend
+
+¡Y tendrás todo funcionando! 🎉
+

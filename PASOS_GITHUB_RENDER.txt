@@ -1,0 +1,199 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║        📤 SUBIR A GITHUB Y DESPLEGAR EN RENDER (5 MINUTOS)       ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 1️⃣  CREAR REPOSITORIO EN GITHUB
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Abre en el navegador: https://github.com/new
+
+2. Completa:
+   Repository name: pulmocheck
+   Description: Plataforma de detección temprana de cáncer de pulmón
+   
+   ○ Public  (selecciona esta)
+   ○ Private
+   
+   ☐ Add a README file (NO marcar)
+   ☐ Add .gitignore (NO marcar)
+   ☐ Choose a license (NO marcar)
+
+3. Clic en: "Create repository"
+
+4. GitHub te mostrará una página. COPIA la URL que dice:
+   https://github.com/TU-USUARIO/pulmocheck.git
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 2️⃣  CONECTAR Y SUBIR (EN POWERSHELL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+En tu PowerShell en C:\PulmoCheck, ejecuta:
+
+# Reemplaza TU-USUARIO con tu usuario real de GitHub
+git remote add origin https://github.com/TU-USUARIO/pulmocheck.git
+
+# Renombrar branch a main
+git branch -M main
+
+# Subir el código
+git push -u origin main
+
+Te pedirá usuario y contraseña de GitHub.
+Si tienes 2FA activado, necesitarás un Personal Access Token.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 3️⃣  DESPLEGAR BACKEND EN RENDER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Abre: https://render.com
+
+2. Clic en "Get Started" o "Sign Up"
+
+3. Selecciona: "Sign up with GitHub"
+
+4. Autoriza Render a acceder a tu GitHub
+
+5. En el Dashboard de Render:
+   - Clic en "New +"
+   - Selecciona "Web Service"
+
+6. Busca y selecciona tu repositorio: "pulmocheck"
+
+7. Configuración:
+   
+   Name: pulmocheck-api
+   Region: Oregon (US West)
+   Branch: main
+   Root Directory: backend
+   
+   Runtime: Python 3
+   
+   Build Command: pip install -r requirements.txt
+   
+   Start Command: gunicorn --bind 0.0.0.0:$PORT app:app
+   
+   Instance Type: Free
+
+8. Clic en "Advanced" y agregar Environment Variables:
+   
+   Key: FLASK_ENV
+   Value: production
+   
+   Key: FLASK_DEBUG
+   Value: 0
+
+9. Clic en "Create Web Service"
+
+10. Espera 3-5 minutos mientras se despliega
+
+11. COPIA LA URL que te da (algo como):
+    https://pulmocheck-api.onrender.com
+    
+    ¡GUÁRDALA! La necesitarás después
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 4️⃣  CONECTAR FRONTEND CON BACKEND
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+En tu PowerShell:
+
+1. Editar archivo de API:
+   
+   Abre: frontend/src/api.js
+   
+   Busca la línea:
+   const API_BASE_URL = 'http://localhost:5000/api';
+   
+   Cámbiala por (usa TU URL de Render):
+   const API_BASE_URL = 'https://pulmocheck-api.onrender.com/api';
+   
+   Guarda el archivo
+
+2. Editar CORS en backend:
+   
+   Abre: backend/app.py
+   
+   Busca la línea:
+   CORS(app)
+   
+   Cámbiala por:
+   CORS(app, origins=["https://pulmocheck-96f8f.web.app"])
+   
+   Guarda el archivo
+
+3. Subir cambios a GitHub:
+   
+   git add .
+   git commit -m "Conectar frontend con backend en Render"
+   git push
+
+4. Render redesplegará automáticamente (2-3 minutos)
+
+5. Redeploy frontend en Firebase:
+   
+   cd frontend
+   npm run build
+   cd ..
+   firebase deploy --only hosting
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ ¡LISTO! TU APP ESTÁ COMPLETA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Frontend: https://pulmocheck-96f8f.web.app
+Backend: https://pulmocheck-api.onrender.com
+
+✅ 100% funcional
+✅ Accesible desde cualquier dispositivo
+✅ $0/mes de costo
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  IMPORTANTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Plan gratuito de Render:
+• El backend "duerme" tras 15 minutos sin uso
+• Primera carga después: 30-50 segundos
+• Perfecto para demos y pruebas
+
+¿Quieres evitar el sleep?
+→ Upgrade a Render Pro: $7/mes
+→ O usa Railway: $5 crédito gratis/mes
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔄 ACTUALIZAR EN EL FUTURO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cambios en el backend:
+  git add .
+  git commit -m "Descripción"
+  git push
+  (Render redespliega automático)
+
+Cambios en el frontend:
+  cd frontend
+  npm run build
+  cd ..
+  firebase deploy --only hosting
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+¡ÉXITO! 🎉
+
