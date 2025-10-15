@@ -1,0 +1,112 @@
+.doctor-login {
+  animation: fadeIn 0.5s ease-in;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+}
+
+.login-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-icon {
+  font-size: 70px;
+  margin-bottom: 15px;
+}
+
+.login-header h1 {
+  font-size: 36px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.login-header p {
+  font-size: 18px;
+  color: var(--gray);
+}
+
+.login-card {
+  margin-bottom: 20px;
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.demo-info {
+  margin-top: 30px;
+  padding: 20px;
+  background: #e8f8f5;
+  border-radius: 8px;
+  border-left: 4px solid var(--success);
+}
+
+.demo-info h4 {
+  color: var(--text);
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.demo-info p {
+  margin: 5px 0;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.info-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h3 {
+  color: var(--text);
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.info-card p {
+  color: var(--gray);
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.info-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-card ul li {
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  background: var(--light);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.info-card ul li::before {
+  content: '✓ ';
+  color: var(--success);
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .login-header h1 {
+    font-size: 28px;
+  }
+
+  .login-icon {
+    font-size: 60px;
+  }
+}
+

@@ -1,0 +1,94 @@
+========================================
+   CÓMO EJECUTAR PULMOCHECK
+========================================
+
+¡Todo está listo! Solo necesitas iniciar los dos servidores:
+
+========================================
+OPCIÓN 1: Usar los Scripts (MÁS FÁCIL)
+========================================
+
+1. Haz DOBLE CLIC en: INICIAR_BACKEND.bat
+   → Se abrirá una ventana con el servidor Flask
+   → Verás el mensaje: "🫁 PulmoCheck API iniciada"
+   → DÉJALA ABIERTA
+
+2. Haz DOBLE CLIC en: INICIAR_FRONTEND.bat
+   → Se abrirá otra ventana con el servidor React
+   → Esperá 30-60 segundos
+   → El navegador se abrirá automáticamente en: http://localhost:3000
+   → DÉJALA ABIERTA
+
+¡Listo! Ya podés usar PulmoCheck
+
+========================================
+OPCIÓN 2: Desde PowerShell/CMD
+========================================
+
+TERMINAL 1 - Backend:
+---------------------
+cd backend
+venv\Scripts\activate
+python app.py
+
+TERMINAL 2 - Frontend:
+---------------------
+cd frontend
+npm start
+
+========================================
+ACCEDER A LA APLICACIÓN
+========================================
+
+Frontend (Interfaz): http://localhost:3000
+Backend API: http://localhost:5000
+
+El navegador debería abrirse automáticamente.
+Si no, abrí manualmente: http://localhost:3000
+
+========================================
+CREDENCIALES DEL PORTAL MÉDICO
+========================================
+
+Usuario: doctor
+Contraseña: doctor123
+
+========================================
+DETENER LA APLICACIÓN
+========================================
+
+- Presiona Ctrl+C en cada ventana de comando
+- O simplemente cierra las ventanas
+
+========================================
+¿PROBLEMAS?
+========================================
+
+1. Si el puerto 5000 está ocupado:
+   - Abrí el Administrador de Tareas
+   - Buscá procesos "python" y cerralos
+   - Reiniciá INICIAR_BACKEND.bat
+
+2. Si el puerto 3000 está ocupado:
+   - npm te preguntará si querés usar otro puerto
+   - Respondé "Y" (Yes)
+
+3. Si no se abre el navegador:
+   - Abrí manualmente: http://localhost:3000
+
+4. Página en blanco:
+   - Esperá 30-60 segundos más
+   - Refrescá la página (F5)
+
+========================================
+DOCUMENTACIÓN
+========================================
+
+- INSTRUCCIONES_EJECUCION.md → Guía detallada
+- README.md → Documentación completa
+- DEMO.md → Guía de demostración
+
+========================================
+
+¡Disfrutá de PulmoCheck! 🫁
+

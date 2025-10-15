@@ -1,0 +1,180 @@
+.assessment {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.assessment-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.assessment-header h1 {
+  font-size: 36px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.assessment-header p {
+  font-size: 18px;
+  color: var(--gray);
+}
+
+.progress-container {
+  margin-bottom: 30px;
+}
+
+.progress-text {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.assessment-card {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.step {
+  min-height: 400px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.step h2 {
+  color: var(--text);
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.step-description {
+  color: var(--gray);
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--gray-light);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary);
+}
+
+.form-group small {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  color: var(--gray);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: var(--light);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.checkbox-label:hover {
+  background: #dfe6e9;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.checkbox-label span {
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.button-group button {
+  flex: 1;
+}
+
+.button-group button:only-child {
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .assessment-header h1 {
+    font-size: 28px;
+  }
+
+  .assessment-header p {
+    font-size: 16px;
+  }
+
+  .step h2 {
+    font-size: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group button:only-child {
+    margin-left: 0;
+  }
+}
+
